@@ -12,5 +12,3 @@ Como utilizar gitkraken com gitflow: https://blog.axosoft.com/gitflow/
 # Tecnologias
 
 Instalacao do Flutter + Android Studio : https://flutter.io/setup-windows/
-
-Colocar tambem, aqui, dependencias do projeto
