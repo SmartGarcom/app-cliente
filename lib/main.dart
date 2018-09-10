@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:smart_garcom/screen/LoginScreen.dart';
 
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+
+  final routes = <String, WidgetBuilder>{
+    LoginScreen.tag: (context) => new LoginScreen(),
+  };
+
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -11,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: new ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: new MyHomePage(title: 'Flutter Demo Home Page'),
+      home: new LoginScreen(),
     );
   }
 }
