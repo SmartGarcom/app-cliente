@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:smart_garcom/app_configuration.dart';
+import 'package:smart_garcom/screen/cardapio_screen.dart';
 import 'package:smart_garcom/screen/login_screen.dart';
 import 'package:smart_garcom/theme/style.dart';
-
 
 class MyApp extends StatefulWidget {
   @override
@@ -45,7 +45,9 @@ class _MyAppState extends State<MyApp> {
       theme: theme,
       routes: <String, WidgetBuilder>{
         '/': (BuildContext context) =>
-        new LoginScreen(_configuration, configurationUpdater),
+//            new LoginScreen(_configuration, configurationUpdater),
+//        CardapioScreen.tag: (BuildContext context) =>
+        new CardapioScreen(_configuration, configurationUpdater),
       },
       onGenerateRoute: _getRoute,
       debugShowCheckedModeBanner: false,

@@ -8,9 +8,11 @@ ThemeData getTheme({Brightness brightness, Color primaryColor}) {
   );
 
   return new ThemeData(
+    platform: TargetPlatform.iOS,
     brightness: brightness,
     primaryColor: primaryColor,
-//    fontFamily: 'Comfortaa',
+    scaffoldBackgroundColor: isLight ? Colors.grey[200] : null,
+    fontFamily: 'Comfortaa',
     buttonColor: accentColor,
     buttonTheme: new ButtonThemeData(textTheme: ButtonTextTheme.primary),
     inputDecorationTheme: InputDecorationTheme(
@@ -31,7 +33,6 @@ ThemeData getTheme({Brightness brightness, Color primaryColor}) {
     ),
   );
 }
-
 
 TextStyle textStyle = const TextStyle(
   color: const Color(0XFFFFFFFF),
