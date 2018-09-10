@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:smart_garcom/app_configuration.dart';
 import 'package:smart_garcom/component/Buttons/roundedButton.dart';
 import 'package:smart_garcom/component/TextFields/ensure_visible_when_focused.dart';
 import 'package:smart_garcom/component/loading.dart';
 import 'package:smart_garcom/theme/style.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key key}) : super(key: key);
-
   static String tag = 'login-screen';
+  final AppConfiguration configuration;
+  final ValueChanged<AppConfiguration> updater;
+
+  LoginScreen(this.configuration, this.updater);
 
   @override
   LoginScreenState createState() => new LoginScreenState();
@@ -27,13 +30,15 @@ class LoginScreenState extends State<LoginScreen> {
   static final TextEditingController _passwordController =
       new TextEditingController();
 
-  ThemeData theme =
-      getTheme(brightness: Brightness.dark, primaryColor: Colors.teal);
+  ThemeData theme;
 
   @override
   void initState() {
     super.initState();
     step = Steps.INICIO;
+    theme = getTheme(
+        brightness: Brightness.dark,
+        primaryColor: widget.configuration.primaryColor);
   }
 
   @override

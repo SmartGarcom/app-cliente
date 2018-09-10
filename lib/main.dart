@@ -1,72 +1,56 @@
 import 'package:flutter/material.dart';
-import 'package:smart_garcom/screen/CardapioScreen.dart';
-import 'package:smart_garcom/screen/LoginScreen.dart';
+import 'package:smart_garcom/app_configuration.dart';
+import 'package:smart_garcom/screen/login_screen.dart';
+import 'package:smart_garcom/theme/style.dart';
 
-void main() => runApp(new MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
 
-  final routes = <String, WidgetBuilder>{
-    LoginScreen.tag: (context) => new LoginScreen(),
-    CardapioScreen.tag: (context) => new CardapioScreen(),
-  };
+class _MyAppState extends State<MyApp> {
+  AppConfiguration _configuration = new AppConfiguration();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void configurationUpdater(AppConfiguration value) {
+    setState(() {
+      _configuration = value;
+    });
+  }
+
+  ThemeData get theme {
+    assert(_configuration != null);
+    return getTheme(
+      brightness: _configuration.brightness,
+      primaryColor: _configuration.primaryColor,
+    );
+  }
+
+  Route<dynamic> _getRoute(RouteSettings settings) {
+    //TODO IMPLEMENT
+    final List<String> path = settings.name.split('/');
+    if (path[0] != '') return null;
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: 'Flutter Demo',
-      theme: new ThemeData(
-        primarySwatch: Colors.blue,
-        platform: TargetPlatform.iOS,
-      ),
-      home: new CardapioScreen(),
+      title: 'Uniun',
+      theme: theme,
+      routes: <String, WidgetBuilder>{
+        '/': (BuildContext context) =>
+        new LoginScreen(_configuration, configurationUpdater),
+      },
+      onGenerateRoute: _getRoute,
+      debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => new _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text(widget.title),
-      ),
-      body: new Center(
-        child: new Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            new Text(
-              'You have pushed the button this many times:',
-            ),
-            new Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: new FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: new Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
-}
+void main() => runApp(new MyApp());
