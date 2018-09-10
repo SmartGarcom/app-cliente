@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:smart_garcom/app_configuration.dart';
 import 'package:smart_garcom/screen/cardapio_screen.dart';
 import 'package:smart_garcom/screen/login_screen.dart';
+import 'package:smart_garcom/screen/produtos_screen.dart';
 import 'package:smart_garcom/theme/style.dart';
 
 class MyApp extends StatefulWidget {
@@ -15,6 +16,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    _configuration.primaryColor = Colors.brown;
   }
 
   void configurationUpdater(AppConfiguration value) {
@@ -47,7 +49,9 @@ class _MyAppState extends State<MyApp> {
         '/': (BuildContext context) =>
 //            new LoginScreen(_configuration, configurationUpdater),
 //        CardapioScreen.tag: (BuildContext context) =>
-        new CardapioScreen(_configuration, configurationUpdater),
+            new CardapioScreen(_configuration, configurationUpdater),
+        ProdutosScreen.tag: (BuildContext context) =>
+            new ProdutosScreen(_configuration, configurationUpdater),
       },
       onGenerateRoute: _getRoute,
       debugShowCheckedModeBanner: false,
