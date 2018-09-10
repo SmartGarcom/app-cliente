@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_garcom/screen/CardapioScreen.dart';
 import 'package:smart_garcom/screen/LoginScreen.dart';
 
 void main() => runApp(new MyApp());
@@ -7,6 +8,7 @@ class MyApp extends StatelessWidget {
 
   final routes = <String, WidgetBuilder>{
     LoginScreen.tag: (context) => new LoginScreen(),
+    CardapioScreen.tag: (context) => new CardapioScreen(),
   };
 
   @override
@@ -15,8 +17,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: new ThemeData(
         primarySwatch: Colors.blue,
+        platform: TargetPlatform.iOS,
       ),
-      home: new LoginScreen(),
+      home: new CardapioScreen(),
     );
   }
 }
