@@ -43,7 +43,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: 'Uniun',
+      title: 'Smart Garçom',
       theme: theme,
       routes: <String, WidgetBuilder>{
         '/': (BuildContext context) =>
