@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_garcom/theme/style.dart';
+import 'package:smart_garcom/style.dart';
 
 class Loading extends StatelessWidget {
   Widget text;

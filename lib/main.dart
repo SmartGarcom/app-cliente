@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:smart_garcom/app_configuration.dart';
-import 'package:smart_garcom/screen/cardapio_screen.dart';
 import 'package:smart_garcom/screen/login_screen.dart';
-import 'package:smart_garcom/screen/produtos_screen.dart';
 import 'package:smart_garcom/theme/style.dart';
+
 
 class MyApp extends StatefulWidget {
   @override
