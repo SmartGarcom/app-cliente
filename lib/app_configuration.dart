@@ -4,7 +4,7 @@ class AppConfiguration {
   AppTheme appTheme;
 
   AppConfiguration(
-      {brightness = Brightness.light, primaryColor = Colors.green}) {
+      {brightness = Brightness.light, primaryColor = Colors.brown}) {
     appTheme = new AppTheme(brightness: brightness, primaryColor: primaryColor);
   }
 

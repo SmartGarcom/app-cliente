@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smart_garcom/app_configuration.dart';
-import 'package:smart_garcom/screen/login_screen.dart';
-import 'package:smart_garcom/theme/style.dart';
-
+import 'package:smart_garcom/src/screen/login_screen.dart';
+import 'package:smart_garcom/style.dart';
 
 class MyApp extends StatefulWidget {
   @override
@@ -41,11 +40,11 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: 'Uniun',
+      title: 'Smart Garçom',
       theme: theme,
       routes: <String, WidgetBuilder>{
         '/': (BuildContext context) =>
-        new LoginScreen(_configuration, configurationUpdater),
+            new LoginScreen(_configuration, configurationUpdater),
       },
       onGenerateRoute: _getRoute,
       debugShowCheckedModeBanner: false,
