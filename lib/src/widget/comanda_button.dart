@@ -5,6 +5,7 @@ import 'package:smart_garcom/src/bloc/comanda_bloc.dart';
 class ComandaButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    print('build');
     final ComandaBloc comandaBloc = BlocProvider.of<ComandaBloc>(context);
 
     return IconButton(

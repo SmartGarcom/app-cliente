@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:smart_garcom/src/bloc/bloc_provider.dart';
 import 'package:smart_garcom/src/bloc/comanda_bloc.dart';
 import 'package:smart_garcom/src/bloc/comanda_item_bloc.dart';
-import 'package:smart_garcom/src/model/Item.dart';
+import 'package:smart_garcom/src/model/item.dart';
 import 'package:smart_garcom/src/model/comanda.dart';
 import 'package:smart_garcom/src/widget/card_view.dart';
 import 'package:smart_garcom/src/widget/tag_clipper.dart';
@@ -23,17 +23,17 @@ class _ItemViewState extends State<ItemView> {
 
   @override
   void dispose() {
-//    _comandaItemSubscription?.cancel();
+    _comandaItemSubscription?.cancel();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     ComandaBloc comandaBloc = BlocProvider.of<ComandaBloc>(context);
-    ComandaItemBloc comandaItembloc = ComandaItemBloc(widget.item);
+    ComandaItemBloc comandaItemBloc = ComandaItemBloc(widget.item);
 
     _comandaItemSubscription =
-        comandaBloc.itens.listen(comandaItembloc.comandaItens.add);
+        comandaBloc.itens.listen(comandaItemBloc.comandaItens.add);
 
     return Stack(
       alignment: AlignmentDirectional.center,
@@ -63,44 +63,7 @@ class _ItemViewState extends State<ItemView> {
                           ),
                         ),
                       ),
-                      Flexible(
-                        child: Container(
-                          child: Column(
-                            children: <Widget>[
-                              Text(
-                                widget.item.nome,
-                                style: Theme.of(context).textTheme.title,
-                              ),
-                              Row(
-                                children: List.generate(5, (s) {
-                                  s++;
-                                  IconData icon;
-
-                                  if (widget.item.avaliacao >= s)
-                                    icon = Icons.star;
-                                  else if (widget.item.avaliacao <= s - 1)
-                                    icon = Icons.star_border;
-                                  else
-                                    icon = Icons.star_half;
-
-                                  return Icon(
-                                    icon,
-                                    size: 20.0,
-                                    color: Colors.lightGreen,
-                                  );
-                                })
-                                  ..addAll([
-                                    Text(
-                                      '(${widget.item.qtdAvaliacoes})',
-                                      style:
-                                          Theme.of(context).textTheme.caption,
-                                    ),
-                                  ]),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                      Flexible(child: _buildAvaliacao(context)),
                     ],
                   ),
                 ),
@@ -126,72 +89,100 @@ class _ItemViewState extends State<ItemView> {
         ),
         Positioned(
             bottom: 0.0,
-            right: 8.0,
-            child: GestureDetector(
-              onTap: () {
-                comandaBloc.incrementoItem.add(widget.item);
-              },
-              child: Material(
-                elevation: 1.0,
-                color: Colors.grey[300],
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(16.0),
-                    topRight: Radius.circular(0.0),
-                    bottomLeft: Radius.circular(16.0),
-                    bottomRight: Radius.circular(16.0)),
-//                            color: itemAdd ? Colors.lightGreen : null,
-                child: Container(
-                  height: 32.0,
-                  width: 150.0,
-                  child: StreamBuilder<ComandaItem>(
-                      stream: comandaItembloc.item,
-                      builder: (_, snapshot) {
-                        if (!snapshot.hasData) {
-                          return Center(
-                              child: Text(
-                            'Adicionar',
-                            textScaleFactor: 0.9,
-                          ));
-                        } else {
-                          return Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.max,
-                            children: <Widget>[
-                              InkWell(
-                                onTap: (){
-                                  comandaBloc.decrementoItem.add(widget.item);
-                                },
-                                child: Container(
-                                  height: 32.0,
-                                  width: 32.0,
-                                  child: Center(
-                                      child: Text(
-                                        '-',
-                                        style: Theme.of(context).textTheme.title,
-                                      )),
-                                ),
-                              ),
-                              Expanded(
-                                  child: Center(
-                                      child: Text('${snapshot.data.qtd}'))),
-                              Container(
-                                height: 32.0,
-                                width: 32.0,
-                                child: Center(
-                                    child: Text(
-                                  '+',
-                                  style: Theme.of(context).textTheme.title,
-                                )),
-                              ),
-                            ],
-                          );
-                        }
-                      }),
-                ),
-              ),
-            )),
+//            left: 8.0,
+            child: _buildItemCounter(comandaBloc, comandaItemBloc, context)),
       ],
+    );
+  }
+
+  Container _buildAvaliacao(BuildContext context) {
+    return Container(
+      child: Column(
+        children: <Widget>[
+          Text(
+            widget.item.nome,
+            style: Theme.of(context).textTheme.title,
+          ),
+          Row(
+            children: List.generate(5, (s) {
+              s++;
+              IconData icon;
+
+              if (widget.item.avaliacao >= s)
+                icon = Icons.star;
+              else if (widget.item.avaliacao <= s - 1)
+                icon = Icons.star_border;
+              else
+                icon = Icons.star_half;
+
+              return Icon(
+                icon,
+                size: 20.0,
+                color: Colors.lightGreen,
+              );
+            })
+              ..addAll([
+                Text(
+                  '(${widget.item.qtdAvaliacoes})',
+                  style: Theme.of(context).textTheme.caption,
+                ),
+              ]),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildItemCounter(ComandaBloc comandaBloc,
+      ComandaItemBloc comandaItembloc, BuildContext context) {
+    return InkWell(
+      borderRadius: BorderRadius.circular(32.0),
+      onTap: () {
+        comandaBloc.incrementoItem.add(widget.item);
+      },
+      child: Material(
+        elevation: 1.0,
+        color: Colors.grey[300],
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(16.0),
+            topRight: Radius.circular(16.0),
+            bottomLeft: Radius.circular(16.0),
+            bottomRight: Radius.circular(16.0)),
+//                            color: itemAdd ? Colors.lightGreen : null,
+        child: Container(
+          height: 32.0,
+          width: 150.0,
+          child: StreamBuilder<ComandaItem>(
+              stream: comandaItembloc.item,
+              builder: (_, snapshot) {
+                if (!snapshot.hasData) {
+                  return Center(child: Text('Adicionar'));
+                } else {
+                  return Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+//                    mainAxisSize: MainAxisSize.max,
+                    children: <Widget>[
+                      IconButton(
+                          iconSize: 16.0,
+                          icon: Icon(Icons.remove),
+                          onPressed: () {
+                            comandaBloc.decrementoItem.add(widget.item);
+                          }),
+                      Expanded(
+                          child: Center(child: Text('${snapshot.data.qtd}'))),
+                      IconButton(
+                          iconSize: 16.0,
+                          icon: Icon(Icons.add),
+                          onPressed: () {
+                            comandaBloc.incrementoItem.add(widget.item);
+                          }),
+                    ],
+                  );
+                }
+              }),
+        ),
+      ),
     );
   }
 }

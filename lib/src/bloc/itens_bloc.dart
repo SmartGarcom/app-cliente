@@ -3,7 +3,7 @@ import 'dart:math';
 
 import 'package:rxdart/rxdart.dart';
 import 'package:smart_garcom/src/bloc/bloc_provider.dart';
-import 'package:smart_garcom/src/model/Item.dart';
+import 'package:smart_garcom/src/model/item.dart';
 import 'package:smart_garcom/src/model/categoria_item.dart';
 
 class ItensBloc extends BlocBase {

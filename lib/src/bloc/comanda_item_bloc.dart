@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:rxdart/rxdart.dart';
 import 'package:smart_garcom/src/bloc/bloc_provider.dart';
-import 'package:smart_garcom/src/model/Item.dart';
+import 'package:smart_garcom/src/model/item.dart';
 import 'package:smart_garcom/src/model/comanda.dart';
 
 class ComandaItemBloc extends BlocBase {

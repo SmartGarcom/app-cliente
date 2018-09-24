@@ -1,4 +1,4 @@
-import 'package:smart_garcom/src/model/Item.dart';
+import 'package:smart_garcom/src/model/item.dart';
 
 class Comanda {
   List<ComandaItem> itens;

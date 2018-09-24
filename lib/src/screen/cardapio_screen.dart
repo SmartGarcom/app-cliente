@@ -23,9 +23,7 @@ class _CardapioScreenState extends State<CardapioScreen> {
       appBar: AppBar(
         title: Text('Cardápio'),
         elevation: 0.0,
-        actions: <Widget>[
-          ComandaButton(),
-        ],
+        actions: <Widget>[ComandaButton()],
       ),
       body: Container(
         child: OrientationBuilder(builder: (context, orientation) {

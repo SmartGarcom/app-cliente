@@ -8,7 +8,6 @@ import 'package:smart_garcom/src/screen/itens_screen.dart';
 import 'package:smart_garcom/src/style.dart';
 //import 'package:smart_garcom/src/screen/login_screen.dart';
 
-
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();

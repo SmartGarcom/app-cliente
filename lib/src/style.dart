@@ -8,7 +8,7 @@ ThemeData getTheme({Brightness brightness, Color primaryColor}) {
   );
 
   return new ThemeData(
-    platform: TargetPlatform.iOS,
+//    platform: TargetPlatform.iOS,
     brightness: brightness,
     primaryColor: primaryColor,
     scaffoldBackgroundColor: isLight ? Colors.grey[200] : null,
