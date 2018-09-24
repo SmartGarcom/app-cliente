@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:smart_garcom/src/bloc/bloc_provider.dart';
-import 'package:smart_garcom/style.dart';
+import 'package:smart_garcom/src/style.dart';
 
 class ApplicationBloc extends BlocBase {
   ThemeData _themeData;

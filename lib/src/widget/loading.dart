@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:smart_garcom/src/style.dart';
 
 class Loading extends StatelessWidget {
-  Widget text;
-  String loadingMessage;
+  final Widget text;
+  final String loadingMessage;
 
   //passing props in react style
   Loading({

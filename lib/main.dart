@@ -35,7 +35,7 @@ class _MyAppState extends State<MyApp> {
             initialData: getTheme(),
             builder: (_, snapshot) => MaterialApp(
                   title: 'Smart Garçom',
-                  theme: theme,
+                  theme: snapshot.data,
                   routes: <String, WidgetBuilder>{
                     '/': (BuildContext context) =>
 //                LoginScreen(_configuration, configurationUpdater),
