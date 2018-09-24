@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:smart_garcom/app_configuration.dart';
+import 'package:smart_garcom/src/model/app_configuration.dart';
 import 'package:smart_garcom/src/component/Buttons/roundedButton.dart';
 import 'package:smart_garcom/src/component/TextFields/ensure_visible_when_focused.dart';
-import 'package:smart_garcom/src/component/loading.dart';
-import 'package:smart_garcom/style.dart';
+import 'package:smart_garcom/src/widget/loading.dart';
+import 'package:smart_garcom/src/style.dart';
 
 class LoginScreen extends StatefulWidget {
   static String tag = 'login-screen';

@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:rxdart/subjects.dart';
-import 'package:smart_garcom/app_configuration.dart';
+import 'package:smart_garcom/src/model/app_configuration.dart';
 import 'package:smart_garcom/src/bloc/bloc_provider.dart';
 
 class ApplicationBloc extends BlocBase {

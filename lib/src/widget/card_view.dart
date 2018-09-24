@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class CardView extends StatelessWidget {
   final VoidCallback onTap;
-  Widget child;
-  EdgeInsetsGeometry margin;
-  EdgeInsetsGeometry padding;
+  final Widget child;
+  final EdgeInsetsGeometry margin;
+  final EdgeInsetsGeometry padding;
 
   CardView({
     this.onTap,

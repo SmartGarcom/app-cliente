@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:smart_garcom/app_configuration.dart';
-import 'package:smart_garcom/screen/login_screen.dart';
-import 'package:smart_garcom/theme/style.dart';
+import 'package:smart_garcom/src/bloc/bloc_provider.dart';
+import 'package:smart_garcom/src/bloc/comanda_bloc.dart';
+import 'package:smart_garcom/src/bloc/itens_bloc.dart';
+import 'package:smart_garcom/src/model/app_configuration.dart';
+import 'package:smart_garcom/src/screen/cardapio_screen.dart';
+import 'package:smart_garcom/src/screen/itens_screen.dart';
+import 'package:smart_garcom/src/style.dart';
+//import 'package:smart_garcom/src/screen/login_screen.dart';
 
 
 class MyApp extends StatefulWidget {
@@ -41,19 +46,24 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: 'Smart Garçom',
-      theme: theme,
-      routes: <String, WidgetBuilder>{
-        '/': (BuildContext context) =>
-//            new LoginScreen(_configuration, configurationUpdater),
-//        CardapioScreen.tag: (BuildContext context) =>
-            new CardapioScreen(_configuration, configurationUpdater),
-        ProdutosScreen.tag: (BuildContext context) =>
-            new ProdutosScreen(_configuration, configurationUpdater),
-      },
-      onGenerateRoute: _getRoute,
-      debugShowCheckedModeBanner: false,
+    return BlocProvider(
+      bloc: ComandaBloc(),
+      child: BlocProvider(
+        bloc: ItensBloc(),
+        child: MaterialApp(
+          title: 'Smart Garçom',
+          theme: theme,
+          routes: <String, WidgetBuilder>{
+            '/': (BuildContext context) =>
+//                LoginScreen(_configuration, configurationUpdater),
+//            CardapioScreen.route: (_) =>
+                CardapioScreen(),
+            ItensScreen.route: (_) => ItensScreen(),
+          },
+          onGenerateRoute: _getRoute,
+          debugShowCheckedModeBanner: false,
+        ),
+      ),
     );
   }
 }
