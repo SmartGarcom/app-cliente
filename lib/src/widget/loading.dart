@@ -24,12 +24,7 @@ class Loading extends StatelessWidget {
         text != null || loadingMessage != ''
             ? new Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: loadingMessage != null
-                    ? new Text(
-                        loadingMessage,
-                        style: textStyle,
-                      )
-                    : text,
+                child: loadingMessage != null ? new Text(loadingMessage) : text,
               )
             : new Container(),
       ],
