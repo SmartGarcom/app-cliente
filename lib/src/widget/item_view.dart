@@ -79,7 +79,7 @@ class _ItemViewState extends State<ItemView> {
                     widget.item.valor.toString(),
                     style: TextStyle(
                         color: Colors.white,
-                        fontWeight: FontWeight.bold,
+//                        fontWeight: FontWeight.bold,
                         fontSize: 18.0),
                   )),
                 ),
@@ -142,7 +142,9 @@ class _ItemViewState extends State<ItemView> {
       },
       child: Material(
         elevation: 1.0,
-        color: Colors.grey[300],
+//        color: Colors.grey[300],
+        type: MaterialType.canvas,
+
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(16.0),
             topRight: Radius.circular(16.0),

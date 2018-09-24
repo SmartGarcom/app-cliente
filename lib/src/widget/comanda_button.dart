@@ -29,7 +29,7 @@ class ComandaButton extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 12.0,
                             color: Colors.white,
-                            fontWeight: FontWeight.bold,
+//                            fontWeight: FontWeight.bold,
                           ),
                         )),
                   );

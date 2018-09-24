@@ -4,6 +4,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:smart_garcom/src/bloc/bloc_provider.dart';
 import 'package:smart_garcom/src/model/item.dart';
 import 'package:smart_garcom/src/model/comanda.dart';
+import 'package:smart_garcom/src/utils.dart' as utils;
 
 class ComandaBloc extends BlocBase {
   ///
@@ -50,7 +51,7 @@ class ComandaBloc extends BlocBase {
       var ci = ComandaItem(item: item, qtd: 0);
       _comanda.itens.add(ci);
       return ci;
-    }).qtd+=20;
+    }).qtd++;
     _notify();
   }
 
@@ -71,7 +72,7 @@ class ComandaBloc extends BlocBase {
   ///
   void _notify() {
     _qtdItensSubject
-        .add(_comanda.itens.map((ci) => ci.qtd).fold(0, (a, b) => a + b));
+        .add(_comanda.itens.map((ci) => ci.qtd).fold(0, utils.soma));
 
     _itensSubject.add(List.unmodifiable(_comanda.itens));
   }
