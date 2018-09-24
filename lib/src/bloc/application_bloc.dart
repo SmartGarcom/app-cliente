@@ -2,33 +2,45 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:rxdart/subjects.dart';
-import 'package:smart_garcom/app_configuration.dart';
 import 'package:smart_garcom/src/bloc/bloc_provider.dart';
+import 'package:smart_garcom/style.dart';
 
 class ApplicationBloc extends BlocBase {
-  AppConfiguration _appConfiguration;
+  ThemeData _themeData;
 
-  Stream<AppConfiguration> get appConfiguration =>
-      _appConfigurationSubject.stream;
+  /// Stream que retorna o tema
+  ///
+  /// Não usar nas telas (somente ao iniciar a aplicação)
+  Stream<ThemeData> get theme => _themeSubject.stream;
+  final _themeSubject = BehaviorSubject<ThemeData>();
 
-  final _appConfigurationSubject = BehaviorSubject<AppConfiguration>();
+  Sink<Brightness> get brightness => _brightnessController.sink;
+  final _brightnessController = StreamController<Brightness>();
 
   Sink<Color> get primaryColor => _primaryColorController.sink;
-
   final _primaryColorController = StreamController<Color>();
 
   ApplicationBloc() {
-    _appConfiguration = AppConfiguration(
-      brightness: Brightness.light,
-      primaryColor: Colors.blueGrey,
-    );
+    // Tema padrão
+    _changeThemeData(getTheme());
 
-    _appConfigurationSubject.add(_appConfiguration);
+    _brightnessController.stream.listen((brightness) =>
+        _changeThemeData(_themeData.copyWith(brightness: brightness)));
+
+    _primaryColorController.stream.listen(
+        (color) => _changeThemeData(_themeData.copyWith(primaryColor: color)));
   }
 
   @override
   void dispose() {
-    _appConfigurationSubject?.close();
+    _themeSubject?.close();
+
+    _brightnessController?.close();
     _primaryColorController?.close();
+  }
+
+  void _changeThemeData(ThemeData themeData) {
+    _themeData = getTheme(brightness: themeData.brightness, primaryColor: themeData.primaryColor);
+    _themeSubject.add(_themeData);
   }
 }

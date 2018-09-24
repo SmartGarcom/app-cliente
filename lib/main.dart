@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:smart_garcom/app_configuration.dart';
+import 'package:smart_garcom/src/bloc/application_bloc.dart';
+import 'package:smart_garcom/src/bloc/bloc_provider.dart';
 import 'package:smart_garcom/src/screen/login_screen.dart';
 import 'package:smart_garcom/style.dart';
 
@@ -9,27 +10,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  AppConfiguration _configuration = new AppConfiguration();
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  void configurationUpdater(AppConfiguration value) {
-    setState(() {
-      _configuration = value;
-    });
-  }
-
-  ThemeData get theme {
-    assert(_configuration != null);
-    return getTheme(
-      brightness: _configuration.brightness,
-      primaryColor: _configuration.primaryColor,
-    );
-  }
-
   Route<dynamic> _getRoute(RouteSettings settings) {
     //TODO IMPLEMENT
     final List<String> path = settings.name.split('/');
@@ -39,15 +19,23 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: 'Smart Garçom',
-      theme: theme,
-      routes: <String, WidgetBuilder>{
-        '/': (BuildContext context) =>
-            new LoginScreen(_configuration, configurationUpdater),
-      },
-      onGenerateRoute: _getRoute,
-      debugShowCheckedModeBanner: false,
+    ApplicationBloc applicationBloc = ApplicationBloc();
+
+    return BlocProvider(
+      bloc: applicationBloc,
+      child: StreamBuilder<ThemeData>(
+        stream: applicationBloc.theme,
+        initialData: getTheme(),
+        builder: (_, snapshot) => new MaterialApp(
+              title: 'Smart Garçom',
+              theme: snapshot.data,
+              routes: <String, WidgetBuilder>{
+                '/': (BuildContext context) => new LoginScreen(),
+              },
+              onGenerateRoute: _getRoute,
+              debugShowCheckedModeBanner: false,
+            ),
+      ),
     );
   }
 }
