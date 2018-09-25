@@ -17,7 +17,7 @@ class ComandaBloc extends BlocBase {
   ///
   /// Stream dos itens adicionados na comanda
   ///
-  Stream<List<ComandaItem>> get itens => _itensSubject.stream;
+  Stream<List<ComandaItem>> get itens => _itensSubject.stream.asBroadcastStream();
   final _itensSubject = BehaviorSubject<List<ComandaItem>>();
 
   ///
@@ -44,6 +44,12 @@ class ComandaBloc extends BlocBase {
   ComandaBloc() {
     _incrementoItemController.stream.listen(_handleIncItem);
     _decrementoItemController.stream.listen(_handleDecItem);
+
+    _itensSubject.stream.listen((list){
+      _qtdItensSubject
+          .add(list.map((ci) => ci.qtd).fold(0, utils.soma));
+      print('alterou');
+    });
   }
 
   void _handleIncItem(Item item) {
@@ -71,9 +77,6 @@ class ComandaBloc extends BlocBase {
   /// Atualiza os itens na comanda e sua qtd
   ///
   void _notify() {
-    _qtdItensSubject
-        .add(_comanda.itens.map((ci) => ci.qtd).fold(0, utils.soma));
-
     _itensSubject.add(List.unmodifiable(_comanda.itens));
   }
 

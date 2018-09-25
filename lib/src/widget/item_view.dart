@@ -51,15 +51,15 @@ class _ItemViewState extends State<ItemView> {
                       top: 16.0, left: 16.0, right: 16.0, bottom: 8.0),
                   child: Row(
                     children: <Widget>[
-                      new Container(
+                      Container(
                         width: 64.0,
                         height: 64.0,
                         margin: EdgeInsets.only(right: 16.0),
-                        decoration: new BoxDecoration(
+                        decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          image: new DecorationImage(
+                          image: DecorationImage(
                             fit: BoxFit.fill,
-                            image: new NetworkImage(widget.item.imagem),
+                            image: NetworkImage(widget.item.imagem),
                           ),
                         ),
                       ),
