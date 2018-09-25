@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:smart_garcom/src/bloc/application_bloc.dart';
 import 'package:smart_garcom/src/bloc/bloc_provider.dart';
-import 'package:smart_garcom/src/screen/login_screen.dart';
-import 'package:smart_garcom/style.dart';
+import 'package:smart_garcom/src/bloc/comanda_bloc.dart';
+import 'package:smart_garcom/src/bloc/itens_bloc.dart';
+import 'package:smart_garcom/src/screen/cardapio_screen.dart';
+import 'package:smart_garcom/src/screen/itens_screen.dart';
+import 'package:smart_garcom/src/style.dart';
 
 class MyApp extends StatefulWidget {
   @override
@@ -23,18 +26,28 @@ class _MyAppState extends State<MyApp> {
 
     return BlocProvider(
       bloc: applicationBloc,
-      child: StreamBuilder<ThemeData>(
-        stream: applicationBloc.theme,
-        initialData: getTheme(),
-        builder: (_, snapshot) => new MaterialApp(
-              title: 'Smart Garçom',
-              theme: snapshot.data,
-              routes: <String, WidgetBuilder>{
-                '/': (BuildContext context) => new LoginScreen(),
-              },
-              onGenerateRoute: _getRoute,
-              debugShowCheckedModeBanner: false,
-            ),
+      child: BlocProvider(
+        bloc: ComandaBloc(),
+        child: BlocProvider(
+          bloc: ItensBloc(),
+          child: StreamBuilder<ThemeData>(
+            stream: applicationBloc.theme,
+            initialData: getTheme(),
+            builder: (_, snapshot) => MaterialApp(
+                  title: 'Smart Garçom',
+                  theme: snapshot.data,
+                  routes: <String, WidgetBuilder>{
+                    '/': (BuildContext context) =>
+//                LoginScreen(_configuration, configurationUpdater),
+//            CardapioScreen.route: (_) =>
+                        CardapioScreen(),
+                    ItensScreen.route: (_) => ItensScreen(),
+                  },
+                  onGenerateRoute: _getRoute,
+                  debugShowCheckedModeBanner: false,
+                ),
+          ),
+        ),
       ),
     );
   }

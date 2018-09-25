@@ -3,9 +3,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:smart_garcom/src/bloc/application_bloc.dart';
 import 'package:smart_garcom/src/bloc/bloc_provider.dart';
-import 'package:smart_garcom/src/component/Buttons/roundedButton.dart';
-import 'package:smart_garcom/src/component/TextFields/ensure_visible_when_focused.dart';
-import 'package:smart_garcom/style.dart';
+import 'package:smart_garcom/src/style.dart';
+import 'package:smart_garcom/src/widget/ensure_visible_when_focused.dart';
+import 'package:smart_garcom/src/widget/rounded_button.dart';
 
 class LoginScreen extends StatefulWidget {
   static String route = 'login-screen';

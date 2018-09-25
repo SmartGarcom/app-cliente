@@ -26,9 +26,10 @@ class RoundedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextStyle textStyle = new TextStyle(
-        color: textColor == null ? new Color(0XFFFFFFFF) : textColor,
-        fontSize: 16.0,
-        fontWeight: FontWeight.bold);
+      color: textColor == null ? new Color(0XFFFFFFFF) : textColor,
+      fontSize: 16.0,
+//      fontWeight: FontWeight.bold,
+    );
 
     double corner = rounded == null || rounded ? 30.0 : 0.0;
 
@@ -55,7 +56,8 @@ class RoundedButton extends StatelessWidget {
         child: new Container(
           width: width,
           height: 50.0,
-          margin: new EdgeInsets.only(bottom: bottomMargin == null ? 0.0 : bottomMargin),
+          margin: new EdgeInsets.only(
+              bottom: bottomMargin == null ? 0.0 : bottomMargin),
           alignment: FractionalOffset.center,
           decoration: new BoxDecoration(
             color: buttonColor,

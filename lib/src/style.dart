@@ -3,12 +3,10 @@ import 'package:flutter/material.dart';
 ThemeData getTheme(
     {Brightness brightness = Brightness.light,
     Color primaryColor = Colors.brown}) {
-
   var luminance = primaryColor.computeLuminance();
 
   /// Verifica se a primaryColor eh escura se o brightness for dark
-  assert(
-      brightness == Brightness.light || luminance < 0.5);
+  assert(brightness == Brightness.light || luminance < 0.5);
 
   bool isLight = brightness == Brightness.light;
 
@@ -19,6 +17,7 @@ ThemeData getTheme(
   );
 
   return new ThemeData(
+    scaffoldBackgroundColor: isLight ? Colors.grey[200] : Colors.black,
     brightness: brightness,
     primaryColor: primaryColor,
     fontFamily: 'Comfortaa',
