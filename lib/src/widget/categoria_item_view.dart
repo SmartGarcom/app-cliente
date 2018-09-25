@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smart_garcom/src/bloc/bloc_provider.dart';
 import 'package:smart_garcom/src/bloc/itens_bloc.dart';
-import 'package:smart_garcom/src/model/categoria_item.dart';
+import 'package:smart_garcom/src/model/item.dart';
 import 'package:smart_garcom/src/screen/itens_screen.dart';
 import 'package:smart_garcom/src/widget/card_view.dart';
 

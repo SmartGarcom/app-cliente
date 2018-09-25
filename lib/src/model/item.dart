@@ -1,3 +1,4 @@
+
 class Item {
   String cod;
   String nome;
@@ -7,7 +8,9 @@ class Item {
   double avaliacao;
   int qtdAvaliacoes;
 
-  Item(this.cod, this.nome, this.descricao, this.valor, this.imagem,
+  CategoriaItem categoria;
+
+  Item(this.categoria, this.cod, this.nome, this.descricao, this.valor, this.imagem,
       this.avaliacao, this.qtdAvaliacoes);
 
   @override
@@ -15,3 +18,14 @@ class Item {
     return "$cod - $nome";
   }
 }
+
+class CategoriaItem {
+  int id;
+  String nome;
+  String imagem;
+  double avaliacao;
+
+  CategoriaItem([this.id, this.nome, this.imagem, this.avaliacao]);
+
+}
+
