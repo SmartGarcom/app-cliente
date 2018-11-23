@@ -21,7 +21,7 @@ ThemeData getTheme(
     brightness: brightness,
     primaryColor: primaryColor,
     fontFamily: 'Comfortaa',
-    platform: TargetPlatform.iOS,
+//    platform: TargetPlatform.iOS,
 //    accentColor: primaryColor,
     buttonColor: accentColor,
     buttonTheme: new ButtonThemeData(textTheme: ButtonTextTheme.primary),

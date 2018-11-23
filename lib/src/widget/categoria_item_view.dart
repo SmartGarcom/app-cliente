@@ -4,6 +4,7 @@ import 'package:smart_garcom/src/bloc/itens_bloc.dart';
 import 'package:smart_garcom/src/model/item.dart';
 import 'package:smart_garcom/src/screen/itens_screen.dart';
 import 'package:smart_garcom/src/widget/card_view.dart';
+import 'package:smart_garcom/src/widget/image_view.dart';
 
 class CategoriaItemView extends StatelessWidget {
   final CategoriaItem categoria;
@@ -23,6 +24,11 @@ class CategoriaItemView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+//          ImageView(
+//            width: 64.0,
+//            height: 64.0,
+//            image: AssetImage('assets/food_icons/${categoria.imagem}.png'),
+//          ),
           Image.asset(
             'assets/food_icons/${categoria.imagem}.png',
             color: Colors.blueGrey,
@@ -34,9 +40,9 @@ class CategoriaItemView extends StatelessWidget {
             categoria.nome,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.subhead.copyWith(
-              fontSize: 20.0,
-              color: Colors.blueGrey,
-            ),
+                  fontSize: 20.0,
+                  color: Colors.blueGrey,
+                ),
           ),
           SizedBox(height: 8.0),
         ],

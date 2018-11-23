@@ -5,7 +5,7 @@ import 'package:smart_garcom/src/model/item.dart';
 import 'package:smart_garcom/src/widget/categoria_item_view.dart';
 import 'package:smart_garcom/src/widget/loading.dart';
 
-class CardapioCategoriaListView extends StatelessWidget {
+class CategoriaListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final itensBloc = BlocProvider.of<ItensBloc>(context);
