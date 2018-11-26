@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 ThemeData getTheme(
     {Brightness brightness = Brightness.light,
-    Color primaryColor = Colors.brown}) {
+    Color primaryColor = baseColor}) {
   var luminance = primaryColor.computeLuminance();
 
   /// Verifica se a primaryColor eh escura se o brightness for dark
@@ -45,7 +45,7 @@ ThemeData getTheme(
 }
 
 // Logo style
-MaterialColor baseColor = Colors.brown;
+const baseColor = Colors.red;
 Color colorInDark = baseColor[100];
 Color colorInLight = baseColor[900];
 Color logoColor = Colors.yellow;
