@@ -31,7 +31,7 @@ class _MyAppState extends State<MyApp> {
       builder: (_, snapshot) => MaterialApp(
             title: 'Smart Garçom',
             theme: snapshot.data,
-            initialRoute: HomeScreen.route,
+            initialRoute: LoginScreen.route,
             routes: <String, WidgetBuilder>{
               HomeScreen.route: (_) => HomeScreen(),
               LoginScreen.route: (_) => LoginScreen(),

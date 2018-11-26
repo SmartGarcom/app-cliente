@@ -95,7 +95,7 @@ class LoginScreenState extends State<LoginScreen> {
                           },
                           controller: _passwordController,
                           focusNode: _focusNodePassword,
-                        ),
+                        obscureText: true,),
                       ),
                       new SizedBox(height: 32.0),
 
@@ -112,6 +112,16 @@ class LoginScreenState extends State<LoginScreen> {
                           print(color.computeLuminance());
                         },
                       ),
+                      
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: new InkWell(
+                          child: Text("Esqueceu sua senha?", textAlign: TextAlign.center),
+                          onTap: () {},
+
+                        ),
+                      )
+                    
                     ],
                   ),
                 ),
