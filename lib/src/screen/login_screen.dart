@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:smart_garcom/src/bloc/application_bloc.dart';
 import 'package:smart_garcom/src/bloc/bloc_provider.dart';
+import 'package:smart_garcom/src/screen/home_screen.dart';
 import 'package:smart_garcom/src/style.dart';
 import 'package:smart_garcom/src/widget/ensure_visible_when_focused.dart';
 import 'package:smart_garcom/src/widget/rounded_button.dart';
@@ -105,11 +106,12 @@ class LoginScreenState extends State<LoginScreen> {
                         buttonColor: colorInDark,
                         textColor: colorInLight,
                         onTap: () {
-                          int pos = Random().nextInt(colors.length);
-                          print(pos);
-                          var color = colors[pos];
-                          applicationBloc.primaryColor.add(color);
-                          print(color.computeLuminance());
+//                          int pos = Random().nextInt(colors.length);
+//                          print(pos);
+//                          var color = colors[pos];
+//                          applicationBloc.primaryColor.add(color);
+//                          print(color.computeLuminance());
+                        Navigator.pushReplacementNamed(context, HomeScreen.route);
                         },
                       ),
                       

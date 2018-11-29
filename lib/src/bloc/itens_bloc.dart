@@ -23,8 +23,7 @@ class ItensBloc extends BlocBase {
   final _filtroCategoriaController = StreamController<CategoriaItem>();
 
   ItensBloc() {
-    _filtroCategoriaController.stream
-        .listen(_handleFiltroCategoria);
+    _filtroCategoriaController.stream.listen(_handleFiltroCategoria);
 
     List<CategoriaItem> _categoriasProdutos = [
       CategoriaItem(1, 'Sanduíches', 'fast-food', 4.5),
@@ -67,7 +66,6 @@ class ItensBloc extends BlocBase {
             avaliacao,
             qtdAvaliacoes));
       });
-
     });
 
     _itensSubject.add(List.unmodifiable(_itens));
@@ -80,8 +78,8 @@ class ItensBloc extends BlocBase {
   }
 
   void _handleFiltroCategoria(CategoriaItem categoria) {
-    _itensSubject.add(
-        List.unmodifiable(_itens.where((i) => i.categoria == categoria)));
+    _itensSubject
+        .add(List.unmodifiable(_itens.where((i) => i.categoria == categoria)));
   }
 
   void _notifyCategorias() {
